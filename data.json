@@ -1,0 +1,44 @@
+[
+    {
+        "id":1,
+        "name":"John",
+        "description": "Student of Class A",
+        "status": "School fees hasnt been Paid"
+    },
+    {
+      "id": 2,
+      "name": "James",
+      "description": "Student of Class A",
+      "status": "School fees has been Paid"
+    },
+    {
+      "id": 3,
+      "name": "Paul",
+      "description": "Student of Class C",
+      "status": "School fees has been Paid"
+    },
+    {
+      "id": 4,
+      "name": "Peter",
+      "description": "Student of Class B",
+      "status": "School fees has been Paid"
+    },
+    {
+      "id": 5,
+      "name": "Femi",
+      "description": "Student of Class C",
+      "status": "School fees hasnt been Paid"
+    },
+    {
+      "id": 6,
+      "name": "Mike",
+      "description": "Student of Class B",
+      "status": "School fees has been Paid"
+    },
+    {
+      "id": 7,
+      "name": "Pascal",
+      "description": "Student of Class C",
+      "status": "School fees has been Paid"
+    }
+]
