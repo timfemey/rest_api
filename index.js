@@ -5,10 +5,10 @@ const path = require('path');
 const fs = require("fs");
 const app = express();
 
-const port = process.env.port || 5500;
+const PORT = process.env.PORT || 5500 ;
 const node_env = process.env.NODE_ENV;
 
-app.set('port',port);
+app.set('port',PORT);
 app.set('env',node_env)
 
 app.use(morgan('tiny'));
@@ -136,7 +136,7 @@ app.use((err,req,res,next)=>{
 })
 
 
-app.listen(port, ()=> console.log('Server is UP!'));
+app.listen(PORT, ()=> console.log('Server is UP!'));
 
 
 
