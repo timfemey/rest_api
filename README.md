@@ -1,5 +1,8 @@
 # rest_api
 # A simple REST API made by Ishola Obafemi
+<br/>
+If you clone these files, install multer locally for rest api to work
+<br/>
 API is able to POST ,PUT,DELETE AND PUT request to update,create,get and delete data.
 <br/>
 Format/Structure:
