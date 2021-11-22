@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const path = require('path');
 const fs = require("fs");
 const app = express();
+const mult = require('multer');
+const multer=mult();
 
 const PORT = process.env.PORT || 5500 ;
 const node_env = process.env.NODE_ENV;
@@ -11,13 +13,19 @@ const node_env = process.env.NODE_ENV;
 app.set('port',PORT);
 app.set('env',node_env)
 
+app.use(parser.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
 app.use(parser.json());
+app.use(multer.array());
 //app.use(express.static("endpoint"));
 //app.use('/', require(__dirname));
 
 app.get('/', (req,res)=>{
-    res.send('<p>Working, Server Up!</p>')
+    console.log('Working, Server Up!')
+    if(__dirname + '/public/index.html') {
+        res.sendFile(__dirname + '/public/index.html');   
+    } else{
+        res.send('Server is Up, but no HTML display file');
 })
 
 
@@ -65,7 +73,7 @@ app.put("/api/v1/student/:id", async (req, res, next) => {
   try {
     let data = fs.readFileSync("./data.json");
     let parsed = JSON.parse(data);
-    let student = parsed.find((name) => name.id === Number(req.params.id));
+    let student = parsed.find((name) => name.id == Number(req.params.id));
     if (!student) {
       const err = new Error("Student not Found");
       err.status = 404;
@@ -78,14 +86,14 @@ app.put("/api/v1/student/:id", async (req, res, next) => {
       status: req.body.status,
     };
     let newStudentData = parsed.map((name) => {
-      if (name.id === Number(req.params.id)) {
+      if (name.id == Number(req.params.id)) {
         return newStudent;
       } else {
         return name;
       }
     });
-    fs.writeFileSync("/data.json.", JSON.stringify(newStudentData));
-    res.status(200).join(newStudent);
+    fs.writeFileSync("./data.json.", JSON.stringify(newStudentData));
+    res.status(201).json(newStudent);
   } catch (error) {
     next(error);
   }  
@@ -97,7 +105,7 @@ app.delete("/api/v1/student/:id",async (req, res, next) => {
   try {
     let data = fs.readFileSync("./data.json");
     let parsed = JSON.parse(data);
-    let student = parsed.find((name) => name.id === Number(req.params.id));
+    let student = parsed.find((name) => name.id == Number(req.params.id));
     if (!student) {
       const err = new Error("Student not Found");
       err.status = 404;
@@ -105,7 +113,7 @@ app.delete("/api/v1/student/:id",async (req, res, next) => {
     }
     let newStudentData = parsed
       .map((name) => {
-        if (name.id === Number(req.params.id)) {
+        if (name.id == Number(req.params.id)) {
           return null;
         } else {
           return name;
