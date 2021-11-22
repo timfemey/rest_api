@@ -26,6 +26,8 @@ app.get('/', (req,res)=>{
         res.sendFile(__dirname + '/public/index.html');   
     } else{
         res.send('Server is Up, but no HTML display file');
+    }   
+
 })
 
 
